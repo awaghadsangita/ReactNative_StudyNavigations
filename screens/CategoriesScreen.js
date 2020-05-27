@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default function CategoriesScreen() {
+const CategoriesScreen = props => {
   return (
     <View style={styles.container}>
       <Text>Categories Screen</Text>
+      <Button title="Go to Meal" onPress={()=>{props.navigation.navigate({routeName:'CategoryMeal'})}}/>
     </View>
   );
 }
@@ -17,3 +18,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default CategoriesScreen;
