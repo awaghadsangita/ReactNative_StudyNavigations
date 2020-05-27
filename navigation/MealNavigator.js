@@ -7,27 +7,21 @@ import MealDetailsScreen from '../screens/MealDetailsScreen';
 const MealNavigator = createStackNavigator({
     Categories:{
         screen:CategoriesScreen,
-        navigationOptions:{
-            headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              }
-        }},
+        },
     CategoryMeal:{
         screen:CategoryMealScreen,
-        navigationOptions:{
-            headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              }
-        }},
+        },
     MealDetails:MealDetailsScreen
+},{
+    defaultNavigationOptions:{
+        headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
+    }
 });
 
 export default createAppContainer(MealNavigator);
