@@ -10,12 +10,27 @@ const CategoriesMealScreen = props => {
   return (
     <View style={styles.container}>
       <Text>Meal Categories Screen</Text>
-  <Text>{selectedCategory.title}</Text>
+      <Text>{selectedCategory.title}</Text>
       <Button title="Go To Meal Details " onPress={()=>{props.navigation.navigate({routeName:'MealDetails'})}} />
     </View>
   );
 }
+CategoriesMealScreen.navigationOptions= navigationData =>{
+  const catId=navigationData.navigation.getParam('categoryId');
+  const selectedCategory=CATEGORIES.find(cat=>cat.id===catId);
 
+  return {
+    title: selectedCategory.title,
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    }
+
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
