@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function MealDetailsScreen() {
+const MealDetailsScreen = props => {
   return (
     <View style={styles.container}>
-      <Text>Meal Details Screen</Text>
+      <Text>Meal Details Screen</Text>  
     </View>
   );
 }
@@ -17,3 +17,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default MealDetailsScreen;
