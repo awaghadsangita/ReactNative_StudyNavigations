@@ -11,7 +11,7 @@ const CategoriesScreen = props => {
         onPress={()=>{
           props.navigation.navigate({
             routeName:'CategoryMeal',
-            Params:{categoryId:itemData.item.id}})
+            params:{categoryId:itemData.item.id}})
           }}>
         <View>
           <Text>{itemData.item.title}</Text>
@@ -30,13 +30,13 @@ const CategoriesScreen = props => {
 }
 CategoriesScreen.navigationOptions = {
   title: 'Meal Category',
-  headerStyle: {
-    backgroundColor: '#f4511e',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  }
+  // headerStyle: {
+  //   backgroundColor: '#f4511e',
+  // },
+  // headerTintColor: '#fff',
+  // headerTitleStyle: {
+  //   fontWeight: 'bold',
+  // }
 };
 
 const styles = StyleSheet.create({

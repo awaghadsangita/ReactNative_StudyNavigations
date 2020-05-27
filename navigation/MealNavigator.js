@@ -5,8 +5,28 @@ import CategoryMealScreen from '../screens/CategoriesMealScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 
 const MealNavigator = createStackNavigator({
-    Categories:CategoriesScreen,
-    CategoryMeal:CategoryMealScreen,
+    Categories:{
+        screen:CategoriesScreen,
+        navigationOptions:{
+            headerStyle: {
+                backgroundColor: '#f4511e',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }
+        }},
+    CategoryMeal:{
+        screen:CategoryMealScreen,
+        navigationOptions:{
+            headerStyle: {
+                backgroundColor: '#f4511e',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }
+        }},
     MealDetails:MealDetailsScreen
 });
 

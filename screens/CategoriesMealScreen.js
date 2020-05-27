@@ -15,19 +15,13 @@ const CategoriesMealScreen = props => {
     </View>
   );
 }
+
 CategoriesMealScreen.navigationOptions= navigationData =>{
   const catId=navigationData.navigation.getParam('categoryId');
   const selectedCategory=CATEGORIES.find(cat=>cat.id===catId);
 
   return {
-    title: selectedCategory.title,
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    }
+    title: selectedCategory.title
 
   }
 }
