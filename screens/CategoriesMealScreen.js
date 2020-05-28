@@ -2,17 +2,19 @@ import React from 'react';
 import { StyleSheet, Text, View,FlatList } from 'react-native';
 
 import { CATEGORIES,MEALS } from '../data/DummayData';
-
+import MealItem from '../components/MealItem';
 const CategoriesMealScreen = props => {
   const catId=props.navigation.getParam('categoryId');
   const selectedCategory=CATEGORIES.find(cat=>cat.id===catId);
 
   const renderMealItem = itemData=>{
       return (
-          <View>
-            <Text>{itemData.item.title}</Text>
-          </View>
-
+          <MealItem 
+            title={itemData.item.title}
+            image={itemData.item.imageUrl}
+            duration={itemData.item.duration}
+            complexity={itemData.item.complexity}
+            affordability={itemData.item.affordability}/>
       )
   }
   const displayedMeals=MEALS.filter(meal=>meal.categoryIds.indexOf(catId)>=0);
@@ -21,7 +23,8 @@ const CategoriesMealScreen = props => {
       <FlatList 
         keyExtractor={(item,index)=>item.id}
         data={displayedMeals}
-        renderItem={renderMealItem}/>
+        renderItem={renderMealItem}
+        style={{width:'100%'}}/>
     </View>
   );
 }
