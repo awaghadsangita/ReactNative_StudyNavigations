@@ -20,6 +20,7 @@ const MealNavigator = createStackNavigator({
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
+            fontSize:14
           }
     }
 });
