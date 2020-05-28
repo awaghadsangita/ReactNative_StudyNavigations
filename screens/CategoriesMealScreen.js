@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,FlatList } from 'react-native';
 
 import { CATEGORIES,MEALS } from '../data/DummayData';
 import MealItem from '../components/MealItem';
+
 const CategoriesMealScreen = props => {
   const catId=props.navigation.getParam('categoryId');
   const selectedCategory=CATEGORIES.find(cat=>cat.id===catId);
@@ -14,7 +15,13 @@ const CategoriesMealScreen = props => {
             image={itemData.item.imageUrl}
             duration={itemData.item.duration}
             complexity={itemData.item.complexity}
-            affordability={itemData.item.affordability}/>
+            affordability={itemData.item.affordability}
+            onSelectMeal={()=>{
+              props.navigation.navigate({
+                routeName : 'MealDetails',
+                params : {mealId:itemData.item.id}
+              })
+            }}/>
       )
   }
   const displayedMeals=MEALS.filter(meal=>meal.categoryIds.indexOf(catId)>=0);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View,
+import { 
+    View,
     Text,
     StyleSheet,
     TouchableOpacity,
@@ -7,8 +8,9 @@ import { View,
 
 const MealItem =props=>{
     return(
+        
+    <TouchableOpacity onPress={props.onSelectMeal}>
         <View style={styles.mealContainer}>
-    <TouchableOpacity onPress={()=>props.onSelectMeal}>
         <View style={styles.mealItem}>
         <ImageBackground source={{ uri: props.image }}
             style={styles.bgImage}>
@@ -22,8 +24,9 @@ const MealItem =props=>{
                 <Text>{props.affordability.toUpperCase()}</Text>
             </View>    
         </View>
-        </TouchableOpacity>
         </View>
+        </TouchableOpacity>
+       
     );
 }
 
@@ -57,8 +60,7 @@ const styles=StyleSheet.create({
         fontSize:20,
         color: 'white',
         textAlign: 'center'
-    }
-    
+    }    
 });
 
 export default MealItem;
