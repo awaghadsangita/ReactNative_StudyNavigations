@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function FilterScreen() {
+import DrawerMenu from '../components/HeaderLeftDrawer';
+const FilterScreen=()=> {
   return (
     <View style={styles.container}>
       <Text>Filter Screen</Text>
@@ -9,6 +10,13 @@ export default function FilterScreen() {
   );
 }
 
+FilterScreen.navigationOptions =navigationData=> {
+  return{
+    title: 'Filter',
+    headerLeft:()=><DrawerMenu navigationData={navigationData.navigation}/>
+    
+  }
+  };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,3 +25,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default FilterScreen;

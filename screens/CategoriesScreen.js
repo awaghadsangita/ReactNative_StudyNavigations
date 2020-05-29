@@ -1,9 +1,12 @@
 import React from 'react';
 import {StyleSheet, FlatList } from 'react-native';
+import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 
 import {CATEGORIES} from '../data/DummayData';
-
 import CategoryGridTitle from '../components/CategoryGirdTitle';
+import HeaderButton from '../components/HeaderButton';
+
+import DrawerMenu from '../components/HeaderLeftDrawer';
 const CategoriesScreen = props => {
   const renderGridItem = itemData =>{
     return(
@@ -26,8 +29,15 @@ const CategoriesScreen = props => {
     />
   );
 }
-CategoriesScreen.navigationOptions = {
+
+CategoriesScreen.navigationOptions =navigationData=> {
+return{
   title: 'Meal Category',
+  headerTitleStyle:styles.headerTitle,
+  headerLeft:()=><DrawerMenu navigationData={navigationData.navigation}/>
+    
+  
+}
 };
 
 const styles = StyleSheet.create({
@@ -37,6 +47,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  headerTitle:{
+    fontSize:18
+  }
   
 });
 

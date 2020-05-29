@@ -2,13 +2,14 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoriesMealScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoriteScreen from '../screens/FavouriteScreen';
+import FilterScreen from '../screens/FilterScreen';
 
 import React from 'react';
 import {Ionicons} from '@expo/vector-icons';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
-
+import {createDrawerNavigator} from 'react-navigation-drawer';
 const MealStack = createStackNavigator(
 {
     Categories:CategoriesScreen,
@@ -20,26 +21,42 @@ const MealStack = createStackNavigator(
           backgroundColor: '#f4511e',
         },
         headerTintColor: '#FFFFFF',
-        title: 'Meal'
+        title: 'Meal',
       },
     }
   );
   const FavoriteStack = createStackNavigator(
     {
       Favorite: { screen: FavoriteScreen },
+      MealDetails:MealDetailsScreen,
     },
     {
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#42f44b',
+          backgroundColor: '#f4511e',
         },
         headerTintColor: '#FFFFFF',
         title: 'Favorite',
       },
     }
   );
+
+  const FilterStack = createStackNavigator(
+    {
+      Filter: { screen: FilterScreen  },
+    },
+    {
+      defaultNavigationOptions: {
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#FFFFFF',
+        title: 'Filter',
+      },
+    }
+  );
   
-  const App = createBottomTabNavigator(
+  const MealFavTabNavigator = createBottomTabNavigator(
     {
       Meal: { screen: MealStack },
       Favorite: { screen: FavoriteStack },
@@ -51,7 +68,7 @@ const MealStack = createStackNavigator(
           let IconComponent = Ionicons;
           let iconName;
           if (routeName === 'Meal') {
-            iconName = `ios-restaurant${focused ? '' : '-outline'}`;
+            iconName = `ios-restaurant`;
             
           } else if (routeName === 'Favorite') {
             iconName = `ios-star${focused ? '' : '-outline'}`;
@@ -66,4 +83,24 @@ const MealStack = createStackNavigator(
       },
     }
   );
-  export default createAppContainer(App);
+
+  const DrawerNavigator = createDrawerNavigator({
+    //Drawer Optons and indexing
+    MealFav: {
+      //Title
+      screen: MealFavTabNavigator,
+      navigationOptions: {
+        drawerLabel: 'Meals Categories',
+      },
+    },
+    Filter: {
+      //Title
+      screen: FilterStack,
+      navigationOptions: {
+        drawerLabel: 'Filter',
+      },
+    },
+  
+  });
+  
+  export default createAppContainer(DrawerNavigator);

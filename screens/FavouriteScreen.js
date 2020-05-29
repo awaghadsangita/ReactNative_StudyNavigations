@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet,View,FlatList } from 'react-native';
 
-import { CATEGORIES,MEALS } from '../data/DummayData';
-import MealItem from '../components/MealItem';
-
+import { MEALS } from '../data/DummayData';
 import MealList from '../components/MealList';
+import DrawerMenu from '../components/HeaderLeftDrawer';
+
 const FavoriteScreen = props => {
   const displayedMeals=MEALS.filter(meal=>meal.categoryIds=='c1'||meal.categoryIds=='c2');
   return (
@@ -14,10 +13,20 @@ const FavoriteScreen = props => {
   );
 }
 
-FavoriteScreen.navigationOptions= navigationData =>{
-  return {
-    title: 'Yours Favorites'
+FavoriteScreen.navigationOptions =navigationData=> {
+  return{
+    title: 'Your Favorites',
+    headerLeft:()=><DrawerMenu navigationData={navigationData.navigation}/>
+    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    //     <Item
+    //         title="menu"
+    //         iconName="ios-menu"
+    //         onPress={()=>{
+    //           navigationData.navigation.toggleDrawer();
+    //         }}/>
+    //   </HeaderButtons>
+    
   }
-}
+  };
 
 export default FavoriteScreen;
