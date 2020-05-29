@@ -21,8 +21,8 @@ MealDetailsScreen.navigationOptions = navigationData =>{
   const selectedMeal=MEALS.find(meal=>meal.id===mealId);
   return {
       title:selectedMeal.title,
-      headerRight:
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      headerRight:()=>
+      {<HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
           iconName="ios-star"
@@ -30,7 +30,7 @@ MealDetailsScreen.navigationOptions = navigationData =>{
             console.log("marks as favorite");
           }}
         />
-      </HeaderButtons>
+      </HeaderButtons>}
   }
 }
 const styles = StyleSheet.create({

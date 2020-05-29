@@ -1,28 +1,69 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoriesMealScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
+import FavoriteScreen from '../screens/FavouriteScreen';
 
-const MealNavigator = createStackNavigator({
+import React from 'react';
+import {Ionicons} from '@expo/vector-icons';
+import {createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
+
+const MealStack = createStackNavigator(
+{
     Categories:CategoriesScreen,
-    // {screen:CategoriesScreen},
     CategoryMeal:CategoryMealScreen,
-    // {screen:CategoryMealScreen},
     MealDetails:MealDetailsScreen,
-    // {screen:MealDetailsScreen},
-    
 },{
-    defaultNavigationOptions:{
+      defaultNavigationOptions: {
         headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontSize:14
-          }
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#FFFFFF',
+        title: 'Meal'
+      },
     }
-});
-
-export default createAppContainer(MealNavigator);
+  );
+  const FavoriteStack = createStackNavigator(
+    {
+      Favorite: { screen: FavoriteScreen },
+    },
+    {
+      defaultNavigationOptions: {
+        headerStyle: {
+          backgroundColor: '#42f44b',
+        },
+        headerTintColor: '#FFFFFF',
+        title: 'Favorite',
+      },
+    }
+  );
+  
+  const App = createBottomTabNavigator(
+    {
+      Meal: { screen: MealStack },
+      Favorite: { screen: FavoriteStack },
+    },
+    {
+      defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          const { routeName } = navigation.state;
+          let IconComponent = Ionicons;
+          let iconName;
+          if (routeName === 'Meal') {
+            iconName = `ios-home${focused ? '' : '-outline'}`;
+            
+          } else if (routeName === 'Favorite') {
+            iconName = `ios-star${focused ? '' : '-outline'}`;
+          }
+          return <IconComponent name={iconName} size={25} color={tintColor} />;
+        },
+      }
+      ),
+      tabBarOptions: {
+        activeTintColor: '#f4511e',
+        inactiveTintColor: 'gray',
+      },
+    }
+  );
+  export default createAppContainer(App);
