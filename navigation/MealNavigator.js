@@ -51,7 +51,7 @@ const MealStack = createStackNavigator(
           let IconComponent = Ionicons;
           let iconName;
           if (routeName === 'Meal') {
-            iconName = `ios-home${focused ? '' : '-outline'}`;
+            iconName = `ios-restaurant${focused ? '' : '-outline'}`;
             
           } else if (routeName === 'Favorite') {
             iconName = `ios-star${focused ? '' : '-outline'}`;
