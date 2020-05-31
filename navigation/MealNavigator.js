@@ -21,6 +21,10 @@ const MealStack = createStackNavigator(
           backgroundColor: '#f4511e',
         },
         headerTintColor: '#FFFFFF',
+        headerTitleStyle:{
+          fontSize:18,
+          fontFamily:"open-sans-bold"
+        },
         title: 'Meal',
       },
     }

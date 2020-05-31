@@ -4,7 +4,8 @@ import { StyleSheet, Text, View,Image,ScrollView } from 'react-native';
 
 import {MEALS} from '../data/DummayData';
 import ListItem from '../components/ListItem';
-import HeaderButton from '../components/HeaderLeftDrawer';
+import HeaderButton from '../components/HeaderLeftRightButton';
+
 const MealDetailsScreen = props => {
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = MEALS.find(meal=>meal.id===mealId);

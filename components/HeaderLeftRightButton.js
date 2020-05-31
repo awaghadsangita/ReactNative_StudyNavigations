@@ -3,16 +3,18 @@ import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import HeaderButton from './HeaderButton';
 import {Ionicons} from '@expo/vector-icons'
 
-const DrawerMenu=props=>{
+const HeaderButtonLeftRight=props=>{
     return <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
-            title="menu"
-            iconName="ios-menu"
+            title={props.title}
+            iconName={props.iconName}
             onPress={()=>{
-              props.navigationData.toggleDrawer();
-            }}
+              props.buttonTypes=="left"?
+              props.navigationData.toggleDrawer(): console.log(props)
+              }}
+            
             style={{color:"white"}}/>
       </HeaderButtons>
   }
 
-  export default DrawerMenu;
+  export default HeaderButtonLeftRight;
