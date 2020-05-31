@@ -1,14 +1,30 @@
-import React,{useState} from 'react';
-import { StyleSheet, Text, View ,Switch} from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import HeaderButtonLeftRight from '../components/HeaderLeftRightButton';
 import FilterItem from '../components/FilterItem';
 
 const FilterScreen = props => {
+  const {navigation}=props
   const [isGutenFree,setIsGutenFree]=useState(false);
   const [isVegan,setIsVegan]=useState(false);
   const [isVegetarian,setIsVegetarian]=useState(false);
   const [isLactoseFree,setIsLactoseFree]=useState(false);
+
+  const saveFilters=useCallback(()=>{
+    const appliedFilterState={
+      gultenFree:isGutenFree,
+      lactoseFree:isLactoseFree,
+      vagan:isVegan,
+      isVegetarian:isVegetarian
+    }
+    console.log(appliedFilterState)
+  },[isGutenFree,isLactoseFree,isVegan,isVegetarian])
+
+  useEffect(()=>{
+    navigation.setParams({save:saveFilters})
+  },[saveFilters])
+
   return (
     <View style={styles.container}>
      <Text style={styles.titleText}>Available Filter/Restrictions</Text>
@@ -40,7 +56,12 @@ const FilterScreen = props => {
 FilterScreen.navigationOptions =navigationData=> {
   return{
     title: 'Filter',
-    headerLeft:()=><HeaderButtonLeftRight title={"menu"} iconName={"ios-menu"} buttonTypes={"left"} navigationData={navigationData.navigation}/>  
+    headerLeft:()=><HeaderButtonLeftRight title={"menu"} iconName={"ios-menu"} buttonTypes={"left"} navigationData={navigationData.navigation}/>  ,
+    headerRight:()=><HeaderButtonLeftRight 
+        title={"save"} 
+        iconName={"ios-save"} 
+        buttonTypes={"Save"} 
+        navigationData={navigationData.navigation}/>  
   }
 };
 

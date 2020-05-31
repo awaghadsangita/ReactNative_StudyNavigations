@@ -10,7 +10,8 @@ const HeaderButtonLeftRight=props=>{
             iconName={props.iconName}
             onPress={()=>{
               props.buttonTypes=="left"?
-              props.navigationData.toggleDrawer(): console.log(props)
+              props.navigationData.toggleDrawer(): props.buttonTypes=="Right"?
+              console.log(props):props.navigationData.getParam('save')();
               }}
             
             style={{color:"white"}}/>
