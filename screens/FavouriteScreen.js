@@ -1,14 +1,16 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 
-import { MEALS } from '../data/DummayData';
 import MealList from '../components/MealList';
 import HeaderButtonLeftRight from '../components/HeaderLeftRightButton';
 
 const FavoriteScreen = props => {
-  const displayedMeals=MEALS.filter(meal=>meal.categoryIds=='c1'||meal.categoryIds=='c2');
+  const favoriteMeals=useSelector(state=>state.meals.favoriteMeals)
+
+  // const displayedMeals=MEALS.filter(meal=>meal.categoryIds=='c1'||meal.categoryIds=='c2');
   return (
       <MealList
-        mealList={displayedMeals}
+        mealList={favoriteMeals}
         navigation={props.navigation}/>
   );
 }
@@ -16,7 +18,11 @@ const FavoriteScreen = props => {
 FavoriteScreen.navigationOptions =navigationData=> {
   return{
     title: 'Your Favorites',
-    headerLeft:()=><HeaderButtonLeftRight title={"menu"} iconName={"ios-menu"} buttonTypes={"left"} navigationData={navigationData.navigation}/>
+    headerLeft:()=><HeaderButtonLeftRight 
+                    title={"menu"} 
+                    iconName={"ios-menu"} 
+                    buttonTypes={"left"} 
+                    navigationData={navigationData.navigation}/>
   }
   };
 
