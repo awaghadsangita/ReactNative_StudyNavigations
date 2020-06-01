@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image,ScrollView } from 'react-native';
+import {useSelector} from 'react-redux';
 
-
-import {MEALS} from '../data/DummayData';
 import ListItem from '../components/ListItem';
 import HeaderButton from '../components/HeaderLeftRightButton';
 
 const MealDetailsScreen = props => {
   const mealId = props.navigation.getParam('mealId');
-  const selectedMeal = MEALS.find(meal=>meal.id===mealId);
+  const availableMeals=useSelector(state=>state.meals.meals);
+
+  const selectedMeal = availableMeals.find(meal=>meal.id===mealId);
   
   return (
     <ScrollView>
@@ -44,9 +45,10 @@ const MealDetailsScreen = props => {
 }
 MealDetailsScreen.navigationOptions = navigationData =>{
   const mealId=navigationData.navigation.getParam('mealId');
-  const selectedMeal=MEALS.find(meal=>meal.id===mealId);
+  const mealTitle=navigationData.navigation.getParam('mealTitle');
+  // const selectedMeal=MEALS.find(meal=>meal.id===mealId);
   return {
-      title:selectedMeal.title,
+      title:mealTitle.title,
       headerRight:()=><HeaderButton title={"Favorite"} iconName={"ios-star"} buttonTypes={"right"} navigationData="undefined"/>   
     }
   
