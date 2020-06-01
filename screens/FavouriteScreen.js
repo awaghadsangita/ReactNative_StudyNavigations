@@ -1,4 +1,5 @@
 import React from 'react';
+import {View,Text,StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import MealList from '../components/MealList';
@@ -7,7 +8,16 @@ import HeaderButtonLeftRight from '../components/HeaderLeftRightButton';
 const FavoriteScreen = props => {
   const favoriteMeals=useSelector(state=>state.meals.favoriteMeals)
 
-  // const displayedMeals=MEALS.filter(meal=>meal.categoryIds=='c1'||meal.categoryIds=='c2');
+  if(favoriteMeals.length==0||!favoriteMeals){
+    return(
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          No Favorite Item Found! Start adding some to Favorite
+        </Text>
+      </View>
+    )
+  }
+  
   return (
       <MealList
         mealList={favoriteMeals}
@@ -26,4 +36,16 @@ FavoriteScreen.navigationOptions =navigationData=> {
   }
   };
 
+  const styles=StyleSheet.create({
+    container:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center'
+    },
+    title:{
+      fontFamily:'open-sans-bold',
+      fontSize:18
+
+    }
+  })
 export default FavoriteScreen;
