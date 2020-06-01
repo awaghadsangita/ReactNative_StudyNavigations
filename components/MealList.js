@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet,View,FlatList } from 'react-native';
+import {useSelector} from 'react-redux';
 
 import { MEALS } from '../data/DummayData';
 import MealItem from '../components/MealItem';
 
 const MealList = props => {
+  const favoriteMeals=useSelector(state=>state.meals.favoriteMeals);
   const catId=props.navigation.getParam('categoryId');
+  
   const renderMealItem = itemData=>{
+    const isFavorite=favoriteMeals.some(meal=>meal.id===itemData.item.id)
       return (
           <MealItem 
             title={itemData.item.title}
@@ -17,7 +21,11 @@ const MealList = props => {
             onSelectMeal={()=>{
               props.navigation.navigate({
                 routeName : 'MealDetails',
-                params : {mealId:itemData.item.id,mealTitle:itemData.item.title}
+                params : {
+                  mealId:itemData.item.id,
+                  mealTitle:itemData.item.title,
+                  isFav:isFavorite
+                }
               })
             }}/>
       )
